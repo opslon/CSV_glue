@@ -5,7 +5,8 @@ import os
 #### Combine, concatenate, join multiple excel files in a given folder into one dataframe, Each excel files having multiple sheets 
 #### All sheets in a single Excel file are first combined into a dataframe, then all the Excel Books in the folder
 #### Are combined to make a single data frame. The combined data frame is the exported into a single Excel sheet.
-path = r'./file_merge'
+#path = r'./file_merge'
+path = os.getcwd()
 
 filenames = glob.glob(path + "/*.xlsx")
 print(filenames)
@@ -34,7 +35,7 @@ for file in filenames:
         
         concat_all_sheets_all_files=concat_all_sheets_all_files.append(concat_all_sheets_single_file)
         #print(concat_all_sheets)
-os.mkdir('./file_merge/merged')
+#os.mkdir('./file_merge/merged')
 writer = pd.ExcelWriter(r'./master_file.xlsx')
 concat_all_sheets_all_files.to_excel(writer)
 writer.save()
