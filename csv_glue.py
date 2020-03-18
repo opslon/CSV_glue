@@ -8,7 +8,7 @@ import glob
 
 
 #path = r'C:\Users\Tchamna\Downloads\UTRC_DATA\495GowanusSpeedData20152016'
-path = r'/home/opslon/Documents/JIRA_issue_dump/TIN2-2503'
+path = r'./merge_file'
 
 filenames = glob.glob(path + "/*.xlsx")
 print(filenames)
@@ -38,3 +38,7 @@ for file in filenames:
         
         concat_all_sheets_all_files=concat_all_sheets_all_files.append(concat_all_sheets_single_file)
         #print(concat_all_sheets)
+
+writer = pd.ExcelWriter(r'./merge_files/merged/master_file.xlsx')
+cdf.to_excel(writer)
+writer.save()
