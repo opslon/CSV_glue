@@ -1,6 +1,7 @@
 #import numpy as np
 import pandas as pd
 import glob
+import os
 
 #### Combine, concatenate, join multiple excel files in a given folder into one dataframe, Each excel files having multiple sheets 
 #### All sheets in a single Excel file are first combined into a dataframe, then all the Excel Books in the folder
@@ -8,7 +9,7 @@ import glob
 
 
 #path = r'C:\Users\Tchamna\Downloads\UTRC_DATA\495GowanusSpeedData20152016'
-path = r'./merge_file'
+path = r'./file_merge'
 
 filenames = glob.glob(path + "/*.xlsx")
 print(filenames)
@@ -38,7 +39,7 @@ for file in filenames:
         
         concat_all_sheets_all_files=concat_all_sheets_all_files.append(concat_all_sheets_single_file)
         #print(concat_all_sheets)
-
-writer = pd.ExcelWriter(r'./merge_files/merged/master_file.xlsx')
-cdf.to_excel(writer)
+os.mkdir('./file_merge/merged')
+writer = pd.ExcelWriter(r'./file_merge/merged/master_file.xlsx')
+concat_all_sheets_all_files.to_excel(writer)
 writer.save()
